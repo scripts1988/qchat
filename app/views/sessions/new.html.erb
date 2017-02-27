@@ -1,0 +1,7 @@
+<h1>Sign In</h1>
+
+<%= form_tag do %>
+  <%= text_field_tag :email, params[:email], class: 'form-control', placeholder: "Registered email..."  %>
+  <%= text_field_tag :password, nil, class: 'form-control', placeholder: "Your password..." %>
+  <%= submit_tag "Let me in", class: 'btn btn-secondary', data: {disable_with: "Signing in..."} %>
+<% end %>
