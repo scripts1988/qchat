@@ -7,14 +7,20 @@ class SessionsController < ApplicationController
     if @user
       if @user.authenticate(params[:password])
         flash[:success] = "You signed in as " + @user.name
+        session[:user_id] = @user.id
         redirect_to root_path
       else
         flash.now[:error] = "Incorrect password"
-        render new 
+        render 'new'
       end
     else
         flash.now[:error] = "Email not found " + params[:email]
-        render new
+        render 'new'
     end
+  end
+
+  def destroy
+    session[:user_id] = nil
+    redirect_to root_path, flash: {error: "Logged out"}
   end
 end

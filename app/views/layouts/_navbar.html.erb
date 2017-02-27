@@ -13,5 +13,12 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="<%= root_path %>"><strong>qChat</strong></a>
+
+    <div class="nav-item">
+      <% if current_user %>
+        <%= link_to "Log out",  log_out_path, method: 'delete' %> 
+      <% end %>
+    </div>
+
   </div>
 </nav>
