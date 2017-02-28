@@ -5,4 +5,8 @@ class User < ApplicationRecord
   def to_s
     name
   end
+
+  def received_messages
+    Message.where(receiver_id: id).order('created_at ASC') 
+  end
 end

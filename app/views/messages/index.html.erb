@@ -1,0 +1,23 @@
+<h2>Inbox</h2>
+
+<% if @messages.empty? %>
+  <div class="alert alert-danger">Empty message box</div>
+<% end %>
+
+<table class="table table-striped">
+  <thead class="thead thead-default">
+    <tr>
+      <th>Sender</th>
+      <th>Subject</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @messages.each do |item| %>
+      <tr>
+        <td><%= item.get_sender %></td>
+        <td><%= item.subject %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
