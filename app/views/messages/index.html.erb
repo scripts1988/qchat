@@ -15,10 +15,14 @@
   <tbody>
     <% @messages.each do |item| %>
       <tr>
-        <td><%= item.get_sender %></td>
-        <td>
-          <%= link_to item.subject, message_path(id: item.id) %>
-        </td>
+        <!-- If status equal 1, it means this message is read -->
+        <% if item.status == 1 %>
+          <td><%= item.get_sender %></td>
+          <td><%= link_to item.subject, message_path(id: item.id) %></td>
+        <% else %>
+          <td><strong><%= item.get_sender %></strong></td>
+          <td><strong><%= link_to item.subject, message_path(id: item.id) %></strong></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
