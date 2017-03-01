@@ -18,7 +18,7 @@
       <tr>
         <td><%= item.name %></td>
         <td><%= item.email %></td>
-        <td><%= link_to "Add friend", friendships_path(user_id: current_user.id, friend_id: item.id), method: "post"  %></td>
+        <td><%= link_to "Add friend", add_friend_path(user_id: current_user.id, friend_id: item.id), method: "post"  %></td>
       </tr>
     <% end %>
   </tbody>
