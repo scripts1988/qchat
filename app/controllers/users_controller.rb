@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    @users = User.all.select {|m| m.id != current_user.id}
   end
   
   def new
