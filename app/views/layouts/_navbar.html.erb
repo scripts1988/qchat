@@ -12,6 +12,9 @@
 					<!-- It is possible to call log_out_path instead destroy cause declaration in route.rb -->
 					<%= link_to "Logout", log_out_path, method: "delete" , class: "nav-link" %>
 				</li>
+				<li class="nav-item">
+					<%= link_to "Inbox", messages_path, method: "get" , class: "nav-link" %>
+				</li>
 			<% else %>
 				<li class="nav-item">
 					<%= link_to "Sign In", new_session_path, class: "nav-link" %>

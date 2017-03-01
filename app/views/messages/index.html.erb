@@ -16,7 +16,9 @@
     <% @messages.each do |item| %>
       <tr>
         <td><%= item.get_sender %></td>
-        <td><%= item.subject %></td>
+        <td>
+          <%= link_to item.subject, message_path(id: item.id) %>
+        </td>
       </tr>
     <% end %>
   </tbody>
