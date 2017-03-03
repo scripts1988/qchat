@@ -23,6 +23,12 @@ class UsersController < ApplicationController
     friend_ship.friend_id = params[:friend_id]
 
     if friend_ship.save!
+      # If I become a friend to other, of course other will become my friend
+      friendship_versa = Friendship.new
+      friendship_versa.user_id = params[:friend_id]
+      friendship_versa.friend_id = params[:user_id] 
+      friendship_versa.save!
+
       flash[:success] = "You added " + User.find_by_id(params[:friend_id]).name + " to friendship" 
     end
     redirect_to users_path
