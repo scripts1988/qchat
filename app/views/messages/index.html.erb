@@ -13,6 +13,7 @@
     <tr>
       <th>Sender</th>
       <th>Subject</th>
+      <th>Received</th>
     </tr>
   </thead>
 
@@ -23,9 +24,11 @@
         <% if item.status == 1 %>
           <td><%= item.get_sender %></td>
           <td><%= link_to item.subject, message_path(id: item.id) %></td>
+          <td><%= item.created_at.localtime %></td>
         <% else %>
           <td><strong><%= item.get_sender %></strong></td>
           <td><strong><%= link_to item.subject, message_path(id: item.id) %></strong></td>
+          <td><strong><%= item.created_at.localtime %></strong></td>
         <% end %>
       </tr>
     <% end %>

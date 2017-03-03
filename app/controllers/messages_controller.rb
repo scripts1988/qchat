@@ -5,8 +5,10 @@ class MessagesController < ApplicationController
       # update the status from unread to read
       # 1: Read
       # Other value is unread :)
-      @message.status = 1
-      @message.save!
+      if @message.status == 0
+        @message.status = 1
+        @message.save!
+      end
     end
   end
 
@@ -15,6 +17,14 @@ class MessagesController < ApplicationController
       @messages = current_user.received_messages
     else
       @messages = []
+    end
+  end
+
+  def sent
+    if current_user.presence
+      @sent_messages = current_user.list_sent_messages 
+    else
+      @sent_messages = []
     end
   end
 

@@ -6,14 +6,11 @@ class User < ApplicationRecord
     name
   end
 
-  def just_my_friend
-    my_friends = Friendship.where(user_id: current_user.id)
-    if my_friends.empty? == false
-      raise 'Here'
-    end
-  end
-
   def received_messages
     Message.where(receiver_id: id).order('created_at ASC') 
+  end
+
+  def list_sent_messages
+    Message.where(sender_id: id)
   end
 end
