@@ -1,13 +1,19 @@
 class MessagesController < ApplicationController
   def show
-    @message = Message.find(params[:id])
-    if @message.presence
-      # update the status from unread to read
-      # 1: Read
-      # Other value is unread :)
-      if @message.status == 0
-        @message.status = 1
-        @message.save!
+    if current_user.presence
+      @message = Message.find(params[:id])
+      if @message != nil
+        if @message.receiver_id == current_user.id
+          # update the status from unread to read
+          @message.increment!(:status)
+          if @message.status >= 2
+            flash[:error] = "This message is read only once"
+            @message = nil
+          end
+        else
+          flash[:error] = "Permission denined"
+          @message = nil
+        end
       end
     end
   end
@@ -43,6 +49,7 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(message_params)
+    @message.status = 0
     @message.sender_id = current_user.id
 
     respond_to do |format|

@@ -21,14 +21,14 @@
     <% @messages.each do |item| %>
       <tr>
         <!-- If status equal 1, it means this message is read -->
-        <% if item.status == 1 %>
-          <td><%= item.get_sender %></td>
-          <td><%= link_to item.subject, message_path(id: item.id) %></td>
-          <td><%= item.created_at.localtime %></td>
-        <% else %>
+        <% if item.status == 0 %>
           <td><strong><%= item.get_sender %></strong></td>
           <td><strong><%= link_to item.subject, message_path(id: item.id) %></strong></td>
           <td><strong><%= item.created_at.localtime %></strong></td>
+        <% else %>
+          <td><%= item.get_sender %></td>
+          <td><%= link_to item.subject, message_path(id: item.id) %></td>
+          <td><%= item.created_at.localtime %></td>
         <% end %>
       </tr>
     <% end %>
