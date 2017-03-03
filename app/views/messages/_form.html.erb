@@ -1,0 +1,38 @@
+<%= form_for(message) do |f| %>
+  <% if message.errors.any? %>
+    <div class="alert alert-warning">
+      <div id="error_explanation">
+        <h4><%= pluralize(message.errors.count, " Error") %></h4>
+        <ul>
+          <% message.errors.full_messages.each do | err_msg | %>
+            <li><%= err_msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :To %>
+    <%= f.select :receiver_id, @my_friends.map{|ele| [ele.name, ele.id]}, {}, class: 'form-control' %>
+  </div>
+
+  <br>
+
+  <div class="field">
+    <%= f.label :subject %>
+    <%= f.text_field :subject, class: 'form-control' %>
+  </div>
+  <br>
+
+  <div class="field">
+    <%= f.label :body %>
+    <%= f.text_area :body , class: 'form-control', rows: '9' %>
+  </div>
+
+<br>
+  <div class="actions">
+    <%= f.submit "Send", class: 'btn btn-success' %>
+  </div>
+  <br>
+<% end %>

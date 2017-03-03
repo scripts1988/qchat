@@ -17,4 +17,20 @@ class MessagesController < ApplicationController
       @messages = []
     end
   end
+
+  def new
+    @message = Message.new
+    @my_friends = Array.new
+
+    friends = Friendship.where :user_id => current_user.id
+    if friends.empty? == false
+      friends.each do |item|
+        friend_info = User.find_by_id(item.friend_id)
+        @my_friends.push(friend_info) 
+      end
+    end
+  end
+
+  def create
+  end
 end
