@@ -6,7 +6,7 @@ Submitted by: **Nguyen Thanh Quan**
 
 Time spent: **24** hours
 
-URL: **Insert your Heroku URL here**
+URL: **https://qchat-w2.herokuapp.com**
 
 ## User Stories
 
